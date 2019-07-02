@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:imediato/pages/videos_page.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'Imediatopost.dart';
@@ -38,62 +37,8 @@ class ImediatoHomeState extends State {
     this.getPosts();
   }
 
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-//   static const List<Widget> _widgetOptions = <Widget>[
-//   Text(
-//     'Index 0: Home',
-//     style: optionStyle,
-//   ),
-//   Text(
-//      'Index 1: Ao Vivo',
-//      style: optionStyle,
-//   ),
-//   Text(
-//      'Index 2: Upload',
-//      style: optionStyle,
-//   ),
-// ];
-
-  void _onItemTapped(int index) {
-    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return videosPage();
-    }));
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text("Imediato Online"), backgroundColor: Colors.orange),
-      body: _buildListView(),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Inicio'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.live_tv),
-            title: Text('Ao Vivo'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.file_upload),
-            title: Text('Envie'),
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ),
-    );
-  }
-
-  ListView _buildListView() {
     return ListView.builder(
       itemCount: posts == null ? 0 : posts.length,
       itemBuilder: (BuildContext context, int index) {
@@ -130,7 +75,7 @@ class ImediatoHomeState extends State {
                               context,
                               new MaterialPageRoute(
                                 builder: (context) =>
-                                    new ImediatoPost(post: posts[index]),
+                                    showDetail(index),
                               ),
                             );
                           },
@@ -145,5 +90,8 @@ class ImediatoHomeState extends State {
         );
       },
     );
+    
   }
+
+  ImediatoPost showDetail(int index) => new ImediatoPost(post: posts[index]);
 }

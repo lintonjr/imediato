@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
 
-class videosPage extends StatelessWidget {
-  const videosPage({Key key}) : super(key: key);
+class videosPage extends StatefulWidget {
+  videosPage({Key key}) : super(key: key);
 
+  _videosPageState createState() => _videosPageState();
+}
+
+class _videosPageState extends State<videosPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Imediato Online"),
-        backgroundColor: Colors.orange,
-      ),
+    return Column(
+       children: <Widget>[
+         Text("Visite",
+          textAlign: TextAlign.center,
+         ),
+         RaisedButton(
+           child: Text("Imediato Online",
+           textAlign: TextAlign.center,
+           ),
+         )
+       ]
     );
   }
 }
