@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+void main() {
+var text = "<iframe
+    src=\"https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fimediatoonline%2Fvideos%2F605570609852173%2F&width=640\"
+    width=\"640\" height=\"360\" style=\"border:none;overflow:hidden\" scrolling=\"no\" frameborder=\"0\"
+    allowTransparency=\"true\" allowFullScreen=\"true\"></iframe>";
+
+String replacedText = text.replaceAll(new RegExp(r'width=\"640\" height=\"360\" style=\"border:none;overflow:hidden\"
+scrolling=\"no\" frameborder=\"0\" allowTransparency=\"true\" allowFullScreen=\"true\"'), '');
+
+print(replacedText);
+}
+
+
+<body>
+    <iframe
+        src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fimediatoonline%2Fvideos%2F605570609852173%2F&width=640"></iframe>
+</body>
+
+</html>
