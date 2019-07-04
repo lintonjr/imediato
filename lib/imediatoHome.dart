@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:imediato/services/message.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'Imediatopost.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class ImediatoHome extends StatefulWidget {
   @override
@@ -12,6 +14,9 @@ class ImediatoHome extends StatefulWidget {
 }
 
 class ImediatoHomeState extends State {
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  final List<Message> messages = [];
+
   // Base URL for our wordpress API
   final String apiUrl = "https://imediatoonline.com/wp-json/wp/v2/";
   // Empty list for our posts
@@ -35,6 +40,24 @@ class ImediatoHomeState extends State {
   void initState() {
     super.initState();
     this.getPosts();
+    _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) async {
+        print("onMessage: $message");
+        final notification = message['notification'];
+        setState(() {
+          messages.add(Message(
+              title: notification['title'], body: notification['body']));
+        });
+      },
+      onLaunch: (Map<String, dynamic> message) async {
+        print("onLaunch $message");
+      },
+      onResume: (Map<String, dynamic> message) async {
+        print("onResume $message");
+      },
+    );
+    _firebaseMessaging.requestNotificationPermissions(
+        const IosNotificationSettings(sound: true, badge: true, alert: true));
   }
 
   @override
@@ -74,8 +97,7 @@ class ImediatoHomeState extends State {
                             Navigator.push(
                               context,
                               new MaterialPageRoute(
-                                builder: (context) =>
-                                    showDetail(index),
+                                builder: (context) => showDetail(index),
                               ),
                             );
                           },
@@ -90,7 +112,6 @@ class ImediatoHomeState extends State {
         );
       },
     );
-    
   }
 
   ImediatoPost showDetail(int index) => new ImediatoPost(post: posts[index]);
