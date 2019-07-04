@@ -1,53 +1,40 @@
-import 'dart:convert';
+import 'dart:convert' as convert;
 
-Video videoFromJson(String str) => Video.fromJson(json.decode(str));
+class VideoResponse {
+  List<Video> videos;
 
-String videoToJson(Video data) => json.encode(data.toJson());
-
-class Video {
-    List<Datum> data;
-
-    Video({
-        this.data,
-    });
-
-    factory Video.fromJson(Map<String, dynamic> json) => new Video(
-        data: new List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
-    );
-
-    Map<String, dynamic> toJson() => {
-        "data": new List<dynamic>.from(data.map((x) => x.toJson())),
-    };
+  VideoResponse.fromJson(Map<String, dynamic> json)
+      : videos = json["data"] != null
+            ? json["data"].map<Video>((json) => Video.fromJson(json)).toList()
+            : null;
 }
 
-class Datum {
-    String status;
-    String streamUrl;
-    String secureStreamUrl;
-    String embedHtml;
-    String id;
+class Video {
+  final String embedHtml;
 
-    Datum({
-        this.status,
-        this.streamUrl,
-        this.secureStreamUrl,
-        this.embedHtml,
-        this.id,
-    });
+  Video.fromJson(Map<String, dynamic> json)
+      : embedHtml = json["embed_html"] != null ? json["embed_html"].map<Video>((json) => Video.fromJson(json)).toList()
+            : null;
 
-    factory Datum.fromJson(Map<String, dynamic> json) => new Datum(
-        status: json["status"],
-        streamUrl: json["stream_url"],
-        secureStreamUrl: json["secure_stream_url"],
-        embedHtml: json["embed_html"],
-        id: json["id"],
-    );
+  @override
+  String toString() {
+    return '$embedHtml';
+  }
+}
 
-    Map<String, dynamic> toJson() => {
-        "status": status,
-        "stream_url": streamUrl,
-        "secure_stream_url": secureStreamUrl,
-        "embed_html": embedHtml,
-        "id": id,
-    };
+class VideoService {
+  static Future<VideoResponse> getVideos() async {
+    try {
+
+      final json = "https://graph.facebook.com/v3.3/imediatoonline/live_videos?access_token=EAAfK9JA4T3kBAPl0ZAkBwiUUTNBq0XphXcsi9ekicMfqF1JQhm6ZCuZCEvZAqpWHndvzyIj70aWQ8iU84WFa61lZA6hABDmN4W5MM37UZBJ9U30Ykeuu1DlbrmkQcaC3yrPTXmdGE37cuWr1ZCXHHTvKzacShN2Uw51TdY0ZBlyilgZDZD";
+
+      final map = convert.json.decode(json);
+
+      VideoResponse response = VideoResponse.fromJson(map);
+
+      return response;
+    } catch (error) {
+      print(error);
+    }
+  }
 }
