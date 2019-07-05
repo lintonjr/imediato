@@ -36,10 +36,10 @@ class TemplateState extends State {
             icon: Icon(Icons.live_tv),
             title: Text('Ao Vivo'),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.file_upload),
-            title: Text('Envie'),
-          ),
+//          BottomNavigationBarItem(
+//            icon: Icon(Icons.file_upload),
+//            title: Text('Envie'),
+//          ),
         ],
         currentIndex: _selectedPage,
         selectedItemColor: Colors.amber[800],

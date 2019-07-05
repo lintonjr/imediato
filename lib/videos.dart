@@ -18,7 +18,12 @@ class Video {
 
   @override
   String toString() {
-    return '$embedHtml';
+    print(embedHtml);
+    return '$embedHtml'.replaceAll(
+      new RegExp(
+        r'width=\"640\" height=\"360\" style=\"border:none;overflow:hidden\"scrolling=\"no\" frameborder=\"0\" allowTransparency=\"true\" allowFullScreen=\"true\"'
+        ),
+    '');
   }
 }
 
@@ -27,8 +32,10 @@ class VideoService {
     try {
 
       final json = "https://graph.facebook.com/v3.3/imediatoonline/live_videos?access_token=EAAfK9JA4T3kBAPl0ZAkBwiUUTNBq0XphXcsi9ekicMfqF1JQhm6ZCuZCEvZAqpWHndvzyIj70aWQ8iU84WFa61lZA6hABDmN4W5MM37UZBJ9U30Ykeuu1DlbrmkQcaC3yrPTXmdGE37cuWr1ZCXHHTvKzacShN2Uw51TdY0ZBlyilgZDZD";
+      print(json);
 
       final map = convert.json.decode(json);
+      print(map);
 
       VideoResponse response = VideoResponse.fromJson(map);
 

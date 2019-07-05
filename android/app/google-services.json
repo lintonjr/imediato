@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "979452125881",
+    "firebase_url": "https://imediatowppapp.firebaseio.com",
+    "project_id": "imediatowppapp",
+    "storage_bucket": "imediatowppapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979452125881:android:98d7d66f7c9b00fa",
+        "android_client_info": {
+          "package_name": "br.com.imediatoonline.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "979452125881-5mcrfvfdiro92e7d6vrdira6va91lun9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBy8K1WQLIn3sLkP5cT7d4ySRBKlRce5k4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979452125881-5mcrfvfdiro92e7d6vrdira6va91lun9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

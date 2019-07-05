@@ -1,4 +1,4 @@
-package com.example.imediato;
+package br.com.imediatoonline.app;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

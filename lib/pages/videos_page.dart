@@ -18,55 +18,55 @@ class videosPage extends StatelessWidget {
 
   _body() {
 
-    Future<VideoResponse> future = VideoService.getVideos();
-    return FutureBuilder<VideoResponse>(
-      future: future,
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-        VideoResponse response = snapshot.data;
-        List<Video> videos = response.videos;
-        return Column(
-          children: <Widget>[
-            Expanded(
-              child: _listView(context, videos),
-            )
-          ],
-        );
-      },
-    );
+//    Future<VideoResponse> future = VideoService.getVideos();
+//    return FutureBuilder<VideoResponse>(
+//      future: future,
+//      builder: (context, snapshot) {
+//        if (!snapshot.hasData) {
+//          return Center(
+//            child: CircularProgressIndicator(),
+//          );
+//        }
+//        VideoResponse response = snapshot.data;
+//        List<Video> videos = response.videos;
+//        return Column(
+//          children: <Widget>[
+//            Expanded(
+//              child: _listView(context, videos),
+//            )
+//          ],
+//        );
+//      },
+//    );
   }
       
-  _listView(context, List<Video> videos) {
-    return ListView.builder(
-      itemCount: videos.length,
-      itemBuilder: (ctx, idx) {
-        Video video = videos[idx];
-        return Column(
-          children: <Widget>[
-            Card(
-              child: Column(
-                children: <Widget>[
-                  
-                  new Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: new ListTile(
-                        title: new Padding(
-                            padding: EdgeInsets.symmetric(vertical: 10.0),
-                            child: new HtmlWidget(
-                              video.embedHtml,
-                              ),
-                            ),
-                      )),
-                ],
-              ),
-            )
-          ],
-        );
-      },
-    );
-  }
+//  _listView(context, List<Video> videos) {
+//    return ListView.builder(
+//      itemCount: videos.length,
+//      itemBuilder: (ctx, idx) {
+//        Video video = videos[idx];
+//        return Column(
+//          children: <Widget>[
+//            Card(
+//              child: Column(
+//                children: <Widget>[
+//
+//                  new Padding(
+//                      padding: EdgeInsets.all(10.0),
+//                      child: new ListTile(
+//                        title: new Padding(
+//                            padding: EdgeInsets.symmetric(vertical: 10.0),
+//                            child: new HtmlWidget(
+//                              video.embedHtml,
+//                              ),
+//                            ),
+//                      )),
+//                ],
+//              ),
+//            )
+//          ],
+//        );
+//      },
+//    );
+//  }
 }
